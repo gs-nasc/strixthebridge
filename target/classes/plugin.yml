@@ -1,0 +1,5 @@
+name: StrixTheBridge
+main: br.com.strixcloud.bridge.StrixTheBridge
+version: '1.0-SNAPSHOT'
+depend:
+  - StrixLib
