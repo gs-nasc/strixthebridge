@@ -1,3 +1,9 @@
+#  ___ _       _     _____ _        ___     _    _
+# / __| |_ _ _(_)_ _|_   _| |_  ___| _ )_ _(_)__| |__ _ ___
+# \__ \  _| '_| \ \ / | | | ' \/ -_) _ \ '_| / _` / _` / -_) 1.0
+# |___/\__|_| |_/_\_\ |_| |_||_\___|___/_| |_\__,_\__, \___| By: Bugado
+#                                                 |___/
+
 # Configurações de database
 Database:
   # Tipos de conexão disponíveis: MYSQL, SQLITE;
@@ -9,7 +15,7 @@ Database:
   password: ''
   database: 'strixdev'
 
-# Configuração dos debugs dos plugins strix
+# Configuração de debug
 Debug:
   # Salvar debugs em arquivo .txt
   file-log: false

@@ -133,9 +133,7 @@ public class StrixTheBridge extends JavaPlugin {
     @Override
     public void onDisable() {
         try {
-            if (queryExecutor.isConnected()) queryExecutor.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+            if (queryExecutor != null && queryExecutor.isConnected()) queryExecutor.close();
+        } catch (SQLException e) { }
     }
 }
