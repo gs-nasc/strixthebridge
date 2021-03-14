@@ -1,6 +1,6 @@
 package br.com.strixcloud.bridge.data;
 
-import br.com.strixcloud.bridge.entities.PlayerAccount;
+import br.com.strixcloud.bridge.entities.player.PlayerAccount;
 import br.com.strixcloud.lib.data.DAO;
 import lombok.Getter;
 

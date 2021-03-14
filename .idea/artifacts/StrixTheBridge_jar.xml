@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="StrixTheBridge:jar">
+  <artifact type="jar" build-on-make="true" name="StrixTheBridge:jar">
     <output-path>$PROJECT_DIR$/../../../Teste de pl/plugins</output-path>
     <root id="archive" name="StrixTheBridge.jar">
       <element id="module-output" name="StrixTheBridge" />

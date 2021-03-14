@@ -1,9 +1,10 @@
 package br.com.strixcloud.bridge.repository.impl;
 
-import br.com.strixcloud.bridge.entities.PlayerAccount;
-import br.com.strixcloud.bridge.entities.PlayerStatistics;
+import br.com.strixcloud.bridge.entities.player.PlayerAccount;
+import br.com.strixcloud.bridge.entities.player.PlayerStatistics;
 import br.com.strixcloud.bridge.repository.IAccountsRepository;
 import br.com.strixcloud.bridge.repository.sql.AccountQuery;
+import br.com.strixcloud.lib.entities.DatabaseType;
 import br.com.strixcloud.lib.sql.IQueryExecutor;
 import br.com.strixcloud.lib.util.log.IStrixLogger;
 import br.com.strixcloud.lib.util.serializer.Serializer;
@@ -19,6 +20,21 @@ public class SQLAccountsRepository implements IAccountsRepository {
     private final Serializer<PlayerStatistics, String> statisticsSerializer;
     private final IQueryExecutor queryExecutor;
     private final IStrixLogger logger;
+
+    @Override
+    public void initialize() {
+        var query = AccountQuery.CREATE_TABLE_MYSQL;
+        if (queryExecutor.getDBType() == DatabaseType.SQLITE) {
+            query = AccountQuery.CREATE_TABLE_SQLITE;
+        }
+
+        try (var ps = query.prepare(queryExecutor)) {
+            ps.execute();
+        } catch (SQLException e) {
+            logger.error("An error occurred when trying to initialize accounts repository");
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public List<PlayerAccount> find() {
@@ -37,7 +53,7 @@ public class SQLAccountsRepository implements IAccountsRepository {
                 data.add(account);
             }
         } catch (SQLException e) {
-            logger.error("An error occured when trying to find Accounts data");
+            logger.error("An error occurred when trying to find Accounts data");
             e.printStackTrace();
         }
         return data;
@@ -55,7 +71,7 @@ public class SQLAccountsRepository implements IAccountsRepository {
 
             ps.execute();
         } catch (SQLException e) {
-            logger.error("An error occured when trying to save Accounts data");
+            logger.error("An error occurred when trying to save Accounts data");
             e.printStackTrace();
         }
     }
@@ -73,7 +89,7 @@ public class SQLAccountsRepository implements IAccountsRepository {
 
             ps.execute();
         } catch (SQLException e) {
-            logger.error("An error occured when trying to update Accounts data");
+            logger.error("An error occurred when trying to update Accounts data");
             e.printStackTrace();
         }
     }
@@ -87,7 +103,7 @@ public class SQLAccountsRepository implements IAccountsRepository {
 
             ps.execute();
         } catch (SQLException e) {
-            logger.error("An error occured when trying to delete Accounts data");
+            logger.error("An error occurred when trying to delete Accounts data");
             e.printStackTrace();
         }
     }

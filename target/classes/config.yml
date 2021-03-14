@@ -1,0 +1,17 @@
+# Configurações de database
+Database:
+  # Tipos de conexão disponíveis: MYSQL, SQLITE;
+  type: 'MYSQL'
+  # Configurações para MySQL, caso for usar SQLite, ignore.
+  host: 'localhost'
+  port: 3306
+  user: 'root'
+  password: ''
+  database: 'strixdev'
+
+# Configuração dos debugs dos plugins strix
+Debug:
+  # Salvar debugs em arquivo .txt
+  file-log: false
+  # Enviar debugs para o console
+  console-log: true

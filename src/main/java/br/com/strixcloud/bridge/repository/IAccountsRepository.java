@@ -1,10 +1,12 @@
 package br.com.strixcloud.bridge.repository;
 
-import br.com.strixcloud.bridge.entities.PlayerAccount;
+import br.com.strixcloud.bridge.entities.player.PlayerAccount;
 
 import java.util.List;
 
 public interface IAccountsRepository {
+
+    void initialize();
 
     List<PlayerAccount> find();
 

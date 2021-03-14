@@ -1,4 +1,4 @@
-package br.com.strixcloud.bridge.entities;
+package br.com.strixcloud.bridge.entities.player;
 
 import lombok.Data;
 import lombok.NonNull;
