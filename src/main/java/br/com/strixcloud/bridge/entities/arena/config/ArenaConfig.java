@@ -1,11 +1,12 @@
 package br.com.strixcloud.bridge.entities.arena.config;
 
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.bukkit.Location;
 
 import java.util.List;
 
-@Data
+@Data @RequiredArgsConstructor
 public class ArenaConfig {
 
     private final int maxPlayers;
@@ -32,6 +33,5 @@ public class ArenaConfig {
     private Location downLocation;
 
     private List<Location> spawns;
-    private List<Location> pits;
 
 }
