@@ -8,6 +8,7 @@ public class Arena {
 
     private ArenaConfig config;
 
-    private ArenaTeam[] teams;
+    private ArenaTeam primaryTeam;
+    private ArenaTeam secondaryTeam;
 
 }

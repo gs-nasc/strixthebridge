@@ -24,6 +24,8 @@ import java.sql.SQLException;
 public class StrixTheBridge extends JavaPlugin {
 
     @Getter private ConfigFile configuration;
+    @Getter private ConfigFile fileStorage;
+
     @Getter private IStrixLogger sLogger;
 
     @Getter private IQueryExecutor queryExecutor;
@@ -75,6 +77,7 @@ public class StrixTheBridge extends JavaPlugin {
 
     private void setupConfig() {
         configuration = new ConfigFile(this, "config.yml");
+        fileStorage = new ConfigFile(this, "storage.yml");
     }
 
     private boolean setupDatabase() {

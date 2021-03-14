@@ -21,3 +21,44 @@ Debug:
   file-log: false
   # Enviar debugs para o console
   console-log: true
+
+# Configurações da arena
+Arena:
+  # Configuração de players
+  players:
+    min: 2
+    max: 4
+  # Quantidade de pontos para ganhar
+  wining-score: 5
+  # Configuração dos raios de ações
+  radius:
+    # Raio da área de ganhar pontos
+    pit: 3
+    # Raio que será proibida a construção
+    base: 7
+  # Configuração de delay
+  delay:
+    respawn: 5
+    arrow: 3
+  # Configuração das equipes
+  teams:
+    # Equipe 1
+    primary:
+      # Prefix em chat, title...
+      prefix: '&1Azul'
+      # Cor no nick
+      color: '&b'
+      # Bloco que será givado
+      block:
+        material: 'STAINED_CLAY'
+        data: 3
+    # Equipe 2
+    secondary:
+      # Prefix em chat, title...
+      prefix: '&4Vermelha'
+      # Cor no nick
+      color: '&c'
+      # Bloco que será givado
+      block:
+        material: 'STAINED_CLAY'
+        data: 14

@@ -3,6 +3,8 @@ package br.com.strixcloud.bridge.entities.arena.config;
 import lombok.Data;
 import org.bukkit.Location;
 
+import java.util.List;
+
 @Data
 public class ArenaConfig {
 
@@ -11,8 +13,14 @@ public class ArenaConfig {
 
     private final int winingScore;
 
+    private final int pitRadius;
+    private final int baseRadius;
+
     private final int respawnDelay;
     private final int arrowDelay;
+
+    private final ArenaTeamConfig primaryTeamConfig;
+    private final ArenaTeamConfig secondaryTeamConfig;
 
     /*
         Storage
@@ -23,6 +31,7 @@ public class ArenaConfig {
     private Location topLocation;
     private Location downLocation;
 
-    private Location[] spawns;
+    private List<Location> spawns;
+    private List<Location> pits;
 
 }
