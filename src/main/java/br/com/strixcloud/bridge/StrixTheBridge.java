@@ -1,12 +1,21 @@
 package br.com.strixcloud.bridge;
 
+import br.com.strixcloud.bridge.bukkit.command.arena.ArenaCommand;
 import br.com.strixcloud.bridge.bukkit.listener.PlayerDamageListener;
+import br.com.strixcloud.bridge.entities.arena.Arena;
 import br.com.strixcloud.bridge.entities.serializer.StatisticsSerializer;
+import br.com.strixcloud.bridge.provider.IArenaConfigProvider;
+import br.com.strixcloud.bridge.provider.IWorldProvider;
+import br.com.strixcloud.bridge.provider.impl.NMSWorldProvider;
+import br.com.strixcloud.bridge.provider.impl.YamlArenaConfigProvider;
 import br.com.strixcloud.bridge.repository.IAccountsRepository;
 import br.com.strixcloud.bridge.repository.impl.SQLAccountsRepository;
 import br.com.strixcloud.bridge.services.account.data.load.AccountDataLoadController;
+import br.com.strixcloud.bridge.services.account.data.save.AccountDataSaveController;
+import br.com.strixcloud.bridge.services.arena.config.load.ArenaConfigLoadController;
 import br.com.strixcloud.lib.entities.DatabaseType;
 import br.com.strixcloud.lib.entities.util.ConfigFile;
+import br.com.strixcloud.lib.entities.util.DateDuration;
 import br.com.strixcloud.lib.sql.IQueryExecutor;
 import br.com.strixcloud.lib.sql.impl.HikariQueryExecutor;
 import br.com.strixcloud.lib.sql.impl.SQLiteQueryExecutor;
@@ -28,8 +37,13 @@ public class StrixTheBridge extends JavaPlugin {
 
     @Getter private IStrixLogger sLogger;
 
+    @Getter private IWorldProvider worldProvider;
+    @Getter private IArenaConfigProvider arenaConfigProvider;
+
     @Getter private IQueryExecutor queryExecutor;
     @Getter private IAccountsRepository accountsRepository;
+
+    @Getter private Arena arena;
 
     @Override
     public void onEnable() {
@@ -58,6 +72,7 @@ public class StrixTheBridge extends JavaPlugin {
         loadRepositories();
         loadData();
         loadBukkit();
+        setupArena();
         return true;
     }
 
@@ -81,13 +96,16 @@ public class StrixTheBridge extends JavaPlugin {
     }
 
     private boolean setupDatabase() {
+        DateDuration duration = new DateDuration();
         var dbType = DatabaseType.valueOf(configuration.getMessage("Database.type"));
         switch (dbType) {
             case MYSQL: {
                 queryExecutor = new HikariQueryExecutor(configuration);
                 try {
-                    sLogger.info("Connection stabilised to MySQL database");
-                    return queryExecutor.open();
+                    var open = queryExecutor.open();
+                    var ms = duration.calculate();
+                    sLogger.info(String.format("Connection stabilised to MySQL (%s ms)", ms));
+                    return open;
                 } catch (Exception e) {
                     sLogger.error("Could not connect to MySQL database, trying to connect SQLite");
                     queryExecutor = new SQLiteQueryExecutor(configuration);
@@ -96,8 +114,9 @@ public class StrixTheBridge extends JavaPlugin {
                 }
             }
             case SQLITE: {
-                sLogger.info("Connection stabilised to SQLite");
                 queryExecutor = new SQLiteQueryExecutor(configuration);
+                var ms = duration.calculate();
+                sLogger.info(String.format("Connection stabilised to SQLite (%s ms)", ms));
                 return true;
             }
             default: {
@@ -107,11 +126,26 @@ public class StrixTheBridge extends JavaPlugin {
     }
 
     public void setupListeners() {
+        DateDuration duration = new DateDuration();
         Bukkit.getPluginManager().registerEvents(new PlayerDamageListener(), this);
+
+        var ms = duration.calculate();
+        sLogger.info(String.format("Successfully setup listeners (%s ms)", ms));
     }
 
     public void setupCommands() {
+        getCommand("arena").setExecutor(new ArenaCommand());
+    }
 
+    public void setupArena() {
+        DateDuration duration = new DateDuration();
+        worldProvider = new NMSWorldProvider();
+        arenaConfigProvider = new YamlArenaConfigProvider(configuration, fileStorage);
+
+        this.arena = ArenaConfigLoadController.getInstance().handle();
+
+        var ms = duration.calculate();
+        sLogger.info(String.format("Successfully setup arena (%s ms)", ms));
     }
 
     /*
@@ -136,7 +170,10 @@ public class StrixTheBridge extends JavaPlugin {
     @Override
     public void onDisable() {
         try {
-            if (queryExecutor != null && queryExecutor.isConnected()) queryExecutor.close();
+            if (queryExecutor != null && queryExecutor.isConnected()) {
+                AccountDataSaveController.getInstance().handle();
+                queryExecutor.close();
+            }
         } catch (SQLException e) { }
     }
 }

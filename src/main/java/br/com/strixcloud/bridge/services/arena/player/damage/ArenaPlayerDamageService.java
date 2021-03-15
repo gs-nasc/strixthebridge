@@ -1,12 +1,19 @@
 package br.com.strixcloud.bridge.services.arena.player.damage;
 
-import org.bukkit.event.entity.EntityDamageEvent;
+import lombok.var;
 
 public class ArenaPlayerDamageService {
 
     public void execute(ArenaPlayerDamageDTO data) {
-        if (data.getEvent().getCause() == EntityDamageEvent.DamageCause.FALL) {
-            data.getEvent().setCancelled(true);
+        var event = data.getEvent();
+        switch (event.getCause()) {
+            case FALL: {
+                event.setCancelled(true);
+                return;
+            }
+            case VOID: {
+                event.setCancelled(true);
+            }
         }
     }
 

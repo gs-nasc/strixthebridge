@@ -3,3 +3,8 @@ main: br.com.strixcloud.bridge.StrixTheBridge
 version: '1.0-SNAPSHOT'
 softdepend:
   - StrixLib
+commands:
+  arena:
+    description: 'Comando principal do plugin'
+  statistics:
+    description: 'Comando que exibe as suas estatisticas'

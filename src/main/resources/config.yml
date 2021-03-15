@@ -27,15 +27,15 @@ Arena:
   # Configuração de players
   players:
     min: 2
-    max: 4
+    max: 2
   # Quantidade de pontos para ganhar
   wining-score: 5
   # Configuração dos raios de ações
   radius:
     # Raio da área de ganhar pontos
-    pit: 3
+    pit: 2
     # Raio que será proibida a construção
-    base: 7
+    base: 14
   # Configuração de delay
   delay:
     respawn: 5

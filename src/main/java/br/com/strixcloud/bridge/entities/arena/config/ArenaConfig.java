@@ -32,6 +32,4 @@ public class ArenaConfig {
     private Location topLocation;
     private Location downLocation;
 
-    private List<Location> spawns;
-
 }

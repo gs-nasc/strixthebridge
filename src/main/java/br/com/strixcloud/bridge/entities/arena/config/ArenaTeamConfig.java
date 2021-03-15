@@ -19,6 +19,6 @@ public class ArenaTeamConfig {
      */
 
     private Location pit;
-    private Location base;
+    private Location spawn;
 
 }
