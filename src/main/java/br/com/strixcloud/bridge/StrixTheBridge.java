@@ -2,6 +2,7 @@ package br.com.strixcloud.bridge;
 
 import br.com.strixcloud.bridge.bukkit.command.arena.ArenaCommand;
 import br.com.strixcloud.bridge.bukkit.listener.PlayerDamageListener;
+import br.com.strixcloud.bridge.bukkit.listener.PlayerJoinListener;
 import br.com.strixcloud.bridge.entities.arena.Arena;
 import br.com.strixcloud.bridge.entities.serializer.StatisticsSerializer;
 import br.com.strixcloud.bridge.provider.IArenaConfigProvider;
@@ -127,7 +128,9 @@ public class StrixTheBridge extends JavaPlugin {
 
     public void setupListeners() {
         DateDuration duration = new DateDuration();
+
         Bukkit.getPluginManager().registerEvents(new PlayerDamageListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(), this);
 
         var ms = duration.calculate();
         sLogger.info(String.format("Successfully setup listeners (%s ms)", ms));

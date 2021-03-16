@@ -6,13 +6,10 @@ import br.com.strixcloud.bridge.entities.arena.utils.ArenaBlockType;
 import br.com.strixcloud.bridge.entities.serializer.BlockTypeSerializer;
 import br.com.strixcloud.bridge.provider.IWorldProvider;
 import lombok.var;
-import net.minecraft.server.v1_8_R3.World;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.util.Vector;
-
-import java.util.concurrent.CompletableFuture;
 
 public class NMSWorldProvider implements IWorldProvider {
 

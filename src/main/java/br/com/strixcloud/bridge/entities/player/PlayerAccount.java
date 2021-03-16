@@ -1,13 +1,14 @@
 package br.com.strixcloud.bridge.entities.player;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
-@Data @RequiredArgsConstructor
+@Data @RequiredArgsConstructor @AllArgsConstructor
 public class PlayerAccount {
 
-    private final int id;
+    private int id;
     private final String uuid;
 
     @NonNull private String player;

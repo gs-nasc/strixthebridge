@@ -49,7 +49,7 @@ public class SQLAccountsRepository implements IAccountsRepository {
                 var amount = rs.getDouble("amount");
 
                 PlayerStatistics statistics = statisticsSerializer.deserialize(rs.getString("statistics"));
-                PlayerAccount account = new PlayerAccount(id, uuid, player, amount, statistics);
+                PlayerAccount account = new PlayerAccount(id, uuid, player, amount, statistics, false);
                 data.add(account);
             }
         } catch (SQLException e) {

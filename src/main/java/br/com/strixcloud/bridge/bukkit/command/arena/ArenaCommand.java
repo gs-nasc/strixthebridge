@@ -16,6 +16,8 @@ public class ArenaCommand implements CommandExecutor {
     public ArenaCommand() {
         subCommands = new ArrayList<>();
 
+        subCommands.add(new TestSub());
+
         subCommands.add(new SaveSub());
         subCommands.add(new ResetSub());
 
