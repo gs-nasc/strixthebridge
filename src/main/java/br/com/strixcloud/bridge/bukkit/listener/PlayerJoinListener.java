@@ -8,7 +8,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 public class PlayerJoinListener implements Listener {
 
     @EventHandler
-    public void onDamage(PlayerJoinEvent event) {
+    public void onJoin(PlayerJoinEvent event) {
         ArenaGameJoinController.getInstance().handle(event);
     }
 

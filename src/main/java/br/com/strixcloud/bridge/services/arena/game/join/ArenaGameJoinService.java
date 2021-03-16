@@ -17,10 +17,12 @@ public class ArenaGameJoinService {
 
     public void execute(ArenaGameJoinDTO data) {
         var p = data.getPlayer();
+
         AccountCreateController.getInstance().handle(p);
 
         var acc = AccountsDAO.getInstance().get(p.getUniqueId().toString());
 
+        p.getInventory().clear();
         if (arena.getStatus() == ArenaStatus.IN_PROGRESS || arena.getPlayers().size() >= arena.getConfig().getMaxPlayers()) {
             data.getPlayer().setGameMode(GameMode.SPECTATOR);
             return;

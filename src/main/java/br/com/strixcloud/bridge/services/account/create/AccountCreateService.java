@@ -15,12 +15,13 @@ public class AccountCreateService {
     private final IAccountsRepository repository;
 
     public void execute(AccountCreateDTO data) {
-        if (AccountsDAO.getInstance().get(data.getUuid()) != null) {
+        if (AccountsDAO.getInstance().get(data.getUuid()) == null) {
             var acc = new PlayerAccount(data.getUuid(), data.getPlayer(), 0, new PlayerStatistics());
 
             CompletableFuture.runAsync(() -> {
                 repository.save(acc);
             });
+
             AccountsDAO.getInstance().add(acc);
         }
     }
