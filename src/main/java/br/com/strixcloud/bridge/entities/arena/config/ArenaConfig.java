@@ -4,8 +4,6 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.Location;
 
-import java.util.List;
-
 @Data @RequiredArgsConstructor
 public class ArenaConfig {
 

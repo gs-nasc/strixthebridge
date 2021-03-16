@@ -41,7 +41,7 @@ public class ArenaPlayerPrepareService {
         chestMeta.setColor(color);
         chestplate.setItemMeta(chestMeta);
 
-        var helmet = new ItemStack(Material.LEATHER_CHESTPLATE);
+        var helmet = new ItemStack(Material.LEATHER_HELMET);
         var helmetMeta = (LeatherArmorMeta) helmet.getItemMeta();
         helmetMeta.setColor(color);
         helmet.setItemMeta(helmetMeta);

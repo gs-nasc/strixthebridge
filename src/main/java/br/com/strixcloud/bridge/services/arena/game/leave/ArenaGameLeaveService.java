@@ -2,6 +2,7 @@ package br.com.strixcloud.bridge.services.arena.game.leave;
 
 import br.com.strixcloud.bridge.entities.arena.Arena;
 import br.com.strixcloud.bridge.services.account.create.AccountCreateController;
+import br.com.strixcloud.bridge.services.arena.game.end.ArenaGameEndController;
 import lombok.RequiredArgsConstructor;
 import lombok.var;
 
@@ -16,7 +17,11 @@ public class ArenaGameLeaveService {
         AccountCreateController.getInstance().handle(p);
 
         if (arena.isPlaying(p)) {
-            arena.reset();
+
+            var winner = arena.getEnemyTeam(p);
+            var looser = arena.getTeam(p);
+
+            ArenaGameEndController.getInstance().handle(winner, looser);
         }
     }
 

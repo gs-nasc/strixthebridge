@@ -10,9 +10,6 @@ import lombok.var;
 import org.bukkit.Location;
 import org.bukkit.Material;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @RequiredArgsConstructor
 public class YamlArenaConfigProvider implements IArenaConfigProvider {
 

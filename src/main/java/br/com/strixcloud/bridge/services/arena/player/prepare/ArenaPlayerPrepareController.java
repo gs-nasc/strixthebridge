@@ -1,7 +1,6 @@
 package br.com.strixcloud.bridge.services.arena.player.prepare;
 
 import br.com.strixcloud.bridge.StrixTheBridge;
-
 import lombok.Getter;
 import lombok.var;
 import org.bukkit.entity.Player;

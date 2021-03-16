@@ -3,6 +3,7 @@ package br.com.strixcloud.bridge.task;
 import br.com.strixcloud.bridge.bukkit.reflection.TitleMessage;
 import br.com.strixcloud.bridge.entities.arena.Arena;
 import br.com.strixcloud.bridge.entities.arena.ArenaCage;
+import br.com.strixcloud.bridge.entities.arena.utils.ArenaStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.var;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -23,6 +24,7 @@ public class StartGameTask extends BukkitRunnable {
             var title = new TitleMessage("&5&lThe Bridge", String.format("&fLiberando em &d&l%s", 6 - i));
             title.send();
             if (i >= 6) {
+                arena.setStatus(ArenaStatus.IN_PROGRESS);
                 cages.forEach(ArenaCage::delete);
                 this.cancel();
             }

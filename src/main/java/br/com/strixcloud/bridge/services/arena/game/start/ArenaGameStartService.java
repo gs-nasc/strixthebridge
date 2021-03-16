@@ -3,7 +3,6 @@ package br.com.strixcloud.bridge.services.arena.game.start;
 import br.com.strixcloud.bridge.StrixTheBridge;
 import br.com.strixcloud.bridge.entities.arena.Arena;
 import br.com.strixcloud.bridge.entities.arena.ArenaCage;
-import br.com.strixcloud.bridge.entities.player.PlayerAccount;
 import br.com.strixcloud.bridge.services.arena.player.prepare.ArenaPlayerPrepareController;
 import br.com.strixcloud.bridge.task.StartGameTask;
 import lombok.AllArgsConstructor;
@@ -25,7 +24,7 @@ public class ArenaGameStartService {
             for (var p : currentPlayers) {
                 var bukkitP = Bukkit.getPlayer(UUID.fromString(p.getUuid()));
                 ArenaPlayerPrepareController.getInstance().handle(bukkitP);
-                var cage = new ArenaCage(bukkitP);
+                var cage = new ArenaCage(arena.getTeam(bukkitP).getConfig().getSpawn());
                 cage.build();
                 cages.add(cage);
             }

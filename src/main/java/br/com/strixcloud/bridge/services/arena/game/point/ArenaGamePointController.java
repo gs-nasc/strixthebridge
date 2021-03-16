@@ -3,7 +3,6 @@ package br.com.strixcloud.bridge.services.arena.game.point;
 import br.com.strixcloud.bridge.StrixTheBridge;
 import lombok.Getter;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
 
 public class ArenaGamePointController {
 

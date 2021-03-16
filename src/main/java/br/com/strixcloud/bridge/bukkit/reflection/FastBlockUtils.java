@@ -2,7 +2,8 @@ package br.com.strixcloud.bridge.bukkit.reflection;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import net.minecraft.server.v1_8_R3.*;
+import net.minecraft.server.v1_8_R3.BlockPosition;
+import net.minecraft.server.v1_8_R3.IBlockData;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 
 @RequiredArgsConstructor

@@ -39,11 +39,16 @@ public class Arena {
                 .collect(Collectors.toList());
     }
 
+    public ArenaTeam getEnemyTeam(Player p) {
+        return primaryTeam.isMember(p) ? secondaryTeam : primaryTeam;
+    }
+
     public ArenaTeam getTeam(Player p) {
         return primaryTeam.isMember(p) ? primaryTeam : secondaryTeam;
     }
 
     public void reset() {
+        status = ArenaStatus.WAITING;
         primaryTeam.reset();
         secondaryTeam.reset();
         started = new Date();

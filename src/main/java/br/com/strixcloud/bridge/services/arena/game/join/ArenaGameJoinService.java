@@ -33,10 +33,14 @@ public class ArenaGameJoinService {
         else
             arena.getPrimaryTeam().getPlayers().add(acc);
 
-        data.getPlayer().setGameMode(GameMode.ADVENTURE);
+        p.setDisplayName(p.getName());
+        p.setGameMode(GameMode.ADVENTURE);
         p.teleport(arena.getConfig().getLobbyLocation());
 
-        new VerifyPlayersTask(arena).runTaskTimer(StrixTheBridge.getInstance(), 0L, 20L);
+        var currentPlayers = arena.getPlayers();
+        if (currentPlayers.size() >= arena.getConfig().getMinPlayers()) {
+            new VerifyPlayersTask(arena).runTaskTimer(StrixTheBridge.getInstance(), 0L, 20L);
+        }
     }
 
 }
