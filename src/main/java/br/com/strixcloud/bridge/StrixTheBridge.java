@@ -133,6 +133,7 @@ public class StrixTheBridge extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new PlayerMoveListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerBlockListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerPvPListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerArrowListener(), this);
 
         var ms = duration.calculate();
         sLogger.info(String.format("Successfully setup listeners (%s ms)", ms));

@@ -9,6 +9,10 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
+        <sonar.projectKey>bug4do_strixthebridge</sonar.projectKey>
+        <sonar.organization>bug4do</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
