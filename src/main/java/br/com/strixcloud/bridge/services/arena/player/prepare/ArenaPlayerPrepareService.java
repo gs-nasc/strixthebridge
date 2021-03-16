@@ -36,6 +36,8 @@ public class ArenaPlayerPrepareService {
         inv.setItem(3, block);
         inv.setItem(4, block);
 
+        inv.setItem(8, new ItemStack(Material.ARROW));
+
         var chestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
         var chestMeta = (LeatherArmorMeta) chestplate.getItemMeta();
         chestMeta.setColor(color);
@@ -52,8 +54,11 @@ public class ArenaPlayerPrepareService {
         inv.setHelmet(helmet);
 
         p.setHealth(20);
+        p.setFoodLevel(20);
         p.setGameMode(GameMode.SURVIVAL);
-        p.setDisplayName(String.format("%s %s%s", config.getPrefix(), config.getColor(), p.getDisplayName()));
+        p.setDisplayName(String.format("%s %s%s", config.getPrefix()
+                .replace("&", "§"), config.getColor()
+                .replace("&", "§"), p.getName()));
 
         p.teleport(team.getConfig().getSpawn().add(0, 1, 0));
     }

@@ -18,6 +18,10 @@ public class PlayerBlockListener implements Listener {
         var arena = StrixTheBridge.getInstance().getArena();
         var p = event.getPlayer();
 
+        if (event.getPlayer().hasPermission("thebridge.admin")) {
+            return;
+        }
+
         if (arena.isPlaying(p)) {
             if (event.getBlock().getType() == Material.STAINED_GLASS) {
                 event.setCancelled(true);
@@ -27,8 +31,8 @@ public class PlayerBlockListener implements Listener {
             var firstLoc = arena.getPrimaryTeam().getConfig().getPit();
             var secondLoc = arena.getSecondaryTeam().getConfig().getPit();
 
-            var invalid = firstLoc.distanceSquared(p.getLocation()) <= Math.pow(arena.getConfig().getBaseRadius(), 2) ||
-                    secondLoc.distanceSquared(p.getLocation()) <= Math.pow(arena.getConfig().getBaseRadius(), 2);
+            var invalid = firstLoc.distanceSquared(event.getBlock().getLocation()) <= Math.pow(arena.getConfig().getBaseRadius(), 2) ||
+                    secondLoc.distanceSquared(event.getBlock().getLocation()) <= Math.pow(arena.getConfig().getBaseRadius(), 2);
             if (invalid) {
                 event.setCancelled(true);
             }
@@ -40,12 +44,16 @@ public class PlayerBlockListener implements Listener {
         var arena = StrixTheBridge.getInstance().getArena();
         var p = event.getPlayer();
 
+        if (event.getPlayer().hasPermission("thebridge.admin")) {
+            return;
+        }
+
         if (arena.isPlaying(p)) {
             var firstLoc = arena.getPrimaryTeam().getConfig().getPit();
             var secondLoc = arena.getSecondaryTeam().getConfig().getPit();
 
-            var invalid = firstLoc.distanceSquared(p.getLocation()) <= Math.pow(arena.getConfig().getBaseRadius(), 2) ||
-                    secondLoc.distanceSquared(p.getLocation()) <= Math.pow(arena.getConfig().getBaseRadius(), 2);
+            var invalid = firstLoc.distanceSquared(event.getBlock().getLocation()) <= Math.pow(arena.getConfig().getBaseRadius(), 2) ||
+                    secondLoc.distanceSquared(event.getBlock().getLocation()) <= Math.pow(arena.getConfig().getBaseRadius(), 2);
             if (invalid) {
                 event.setCancelled(true);
             }

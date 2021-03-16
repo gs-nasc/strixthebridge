@@ -28,7 +28,7 @@ public class ArenaGameJoinService {
             return;
         }
 
-        if (arena.getPrimaryTeam().getPlayers().size() >= arena.getConfig().getMaxPlayers())
+        if (arena.getPrimaryTeam().getPlayers().size() >= (arena.getConfig().getMaxPlayers() / 2))
             arena.getSecondaryTeam().getPlayers().add(acc);
         else
             arena.getPrimaryTeam().getPlayers().add(acc);
