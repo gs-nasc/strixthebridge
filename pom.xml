@@ -48,7 +48,7 @@
             <artifactId>StrixLib</artifactId>
             <version>1.0.0</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/libs/StrixLib.jar</systemPath>
+            <systemPath>private_libs/StrixLib.jar</systemPath>
         </dependency>
 
         <dependency>
